@@ -1,0 +1,40 @@
+name: Auto Chmod Plus X
+
+on: [push] # Скрипт срабатывает автоматически при каждом git push
+
+jobs:
+  fix-permissions:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Скачиваем код репозитория на виртуальную машину GitHub
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Разрешаем экшену вносить изменения в наш репозиторий
+          token: ${{ secrets.GITHUB_TOKEN }} 
+
+      # 2. ПОЛНОСТЬЮ НАШ КАСТОМНЫЙ BASH-СКРИПТ
+      - name: Find and Fix Shell Permissions
+        run: |
+          echo "=== Начинаем сканирование репозитория ==="
+          
+          # Находим все файлы .sh, у которых еще нет прав на выполнение, 
+          # и автоматически добавляем им флаг +x
+          find . -name "*.sh" ! -executable -exec chmod +x {} \;
+          
+          echo "=== Права успешно обновлены ==="
+
+      # 3. Наш Bash-скрипт, который сохраняет изменения обратно на GitHub
+      - name: Push Changes back to Repository
+        run: |
+          # Настраиваем виртуального пользователя для фиксации изменений
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Добавляем измененные файлы в индекс
+          git add -A
+          
+          # Проверяем, изменилось ли что-то. 
+          # Если изменения есть — делаем коммит и пушим их в вашу ветку в VS Code
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-set executable permissions for scripts" && git push)
+
