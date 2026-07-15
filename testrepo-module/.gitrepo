@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:brkaspM/testrepo.git
 	branch = main
-	commit = c341fcddba5226cf795e99f36ca55d517ccd6750
-	parent = 9f17606e475d4f3de22df40b5167972ec2401c3d
+	commit = 7655f8b921376f8c8224c6418ae1ac6975c0c233
+	parent = 5ea9356c5f53f4ea972047d27664fd11ada5221b
 	method = merge
 	cmdver = 0.4.9
