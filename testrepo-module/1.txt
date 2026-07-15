@@ -198,3 +198,4 @@ conflict
 conflict
 conflict
 conflict
+Новая тестовая строка
