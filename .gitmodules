@@ -1,3 +1,9 @@
 [submodule "testrepo1"]
 	path = testrepo1
 	url = git@github.com:brkaspM/testrepo.git
+[submodule "interferometer"]
+	path = interferometer
+	url = git@github.com:clementsw/interferometer.git
+[submodule "git-stats"]
+	path = git-stats
+	url = git@github.com:arzzen/git-quick-stats.git
