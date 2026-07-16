@@ -1,0 +1,19 @@
+name: Run My Custom Script
+
+# Триггер: запускать автоматизацию при каждом push в ветку run-actions
+on:
+  push:
+    branches: [ "run-actions" ]
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest # Выделяем чистый сервер на Ubuntu
+
+    steps:
+    # Шаг 1: Скачиваем файлы вашего репозитория на этот сервер
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    # Шаг 2: Запускаем наш созданный скрипт
+    - name: Run bash script
+      run: ./myscript.sh
