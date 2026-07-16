@@ -1,0 +1,3 @@
+[submodule "testrepo1"]
+	path = testrepo1
+	url = git@github.com:brkaspM/testrepo.git
